@@ -1,5 +1,10 @@
 package com.canmert.chargingStations.repository;
 
-public interface StationRepository extends CrudRep {
-    
+import java.util.List;
+
+import com.canmert.chargingStations.model.Station;
+
+import org.springframework.data.repository.PagingAndSortingRepository;
+
+public interface StationRepository extends PagingAndSortingRepository<Station, Long> {
 }
