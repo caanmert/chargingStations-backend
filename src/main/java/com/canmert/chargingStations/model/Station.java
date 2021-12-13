@@ -2,35 +2,36 @@ package com.canmert.chargingStations.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
-import org.hibernate.annotations.ColumnDefault;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Station {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "name cant be null")
     private String name;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<ConnectionPort> connectionPort;
     private String location;
-    @OneToOne
-    private StationStatus status;
+    private boolean inUse;
 
     public Station() {
     }
 
-    public Station(String name, List<ConnectionPort> connectionPort, String location, StationStatus status) {
+    public Station(Long id, String name, List<ConnectionPort> connectionPort, String location, boolean inUse) {
+        this.id = id;
         this.name = name;
         this.connectionPort = connectionPort;
         this.location = location;
-        this.status = status;
+        this.inUse = inUse;
     }
 
     public Long getId() {
@@ -65,12 +66,16 @@ public class Station {
         this.location = location;
     }
 
-    public StationStatus getStatus() {
-        return this.status;
+    public boolean isInUse() {
+        return this.inUse;
     }
 
-    public void setStatus(StationStatus status) {
-        this.status = status;
+    public boolean getInUse() {
+        return this.inUse;
+    }
+
+    public void setInUse(boolean inUse) {
+        this.inUse = inUse;
     }
 
     @Override
@@ -80,7 +85,7 @@ public class Station {
                 ", name='" + getName() + "'" +
                 ", connectionPort='" + getConnectionPort() + "'" +
                 ", location='" + getLocation() + "'" +
-                ", status='" + getStatus() + "'" +
+                ", inUse='" + isInUse() + "'" +
                 "}";
     }
 

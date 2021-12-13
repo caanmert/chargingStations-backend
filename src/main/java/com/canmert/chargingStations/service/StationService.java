@@ -4,11 +4,8 @@ import com.canmert.chargingStations.exception.StationNotFoundException;
 import com.canmert.chargingStations.model.Station;
 import com.canmert.chargingStations.repository.StationRepository;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class StationService {
@@ -36,7 +33,7 @@ public class StationService {
         station.setName(updatedStation.getName());
         station.setLocation(updatedStation.getLocation());
         station.setConnectionPort(updatedStation.getConnectionPort());
-        station.setStatus(updatedStation.getStatus());
+        station.setInUse(updatedStation.getInUse());
         return stationRepository.save(station);
 
     }
