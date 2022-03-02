@@ -13,18 +13,19 @@ public class Location {
     @Id
     @GeneratedValue
     private Long id;
+    private String city;
     private Point coordinates;
+
 
 
     public Location() {
     }
 
-
-    public Location(Long id, Point coordinates) {
+    public Location(Long id, String city, Point coordinates) {
         this.id = id;
+        this.city = city;
         this.coordinates = coordinates;
     }
-
 
     public Long getId() {
         return this.id;
@@ -32,6 +33,14 @@ public class Location {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCity() {
+        return this.city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public Point getCoordinates() {
@@ -42,14 +51,15 @@ public class Location {
         this.coordinates = coordinates;
     }
 
-
     @Override
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
+            ", city='" + getCity() + "'" +
             ", coordinates='" + getCoordinates() + "'" +
             "}";
     }
+
 
 
 

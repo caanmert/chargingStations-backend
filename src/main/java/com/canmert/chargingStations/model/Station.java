@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -20,13 +21,14 @@ public class Station {
     private String name;
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<ConnectionPort> connectionPort;
-    private String location;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Location location;
     private boolean inUse;
 
     public Station() {
     }
 
-    public Station(Long id, String name, List<ConnectionPort> connectionPort, String location, boolean inUse) {
+    public Station(Long id, String name, List<ConnectionPort> connectionPort, Location location, boolean inUse) {
         this.id = id;
         this.name = name;
         this.connectionPort = connectionPort;
@@ -58,11 +60,11 @@ public class Station {
         this.connectionPort = connectionPort;
     }
 
-    public String getLocation() {
+    public Location getLocation() {
         return this.location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(Location location) {
         this.location = location;
     }
 
