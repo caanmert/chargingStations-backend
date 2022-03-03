@@ -25,7 +25,7 @@ public class UserRestController {
         return userService.getById(id);
     }
 
-    @PostMapping("/users")
+    @PostMapping("/register")
     public User createUser(@RequestBody User user){
         return userService.create(user);
     }
