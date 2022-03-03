@@ -33,7 +33,7 @@ public class UserRestControllerTest {
     public void createUser_success() throws Exception{
         User user = new User("Can", "123678", false, false, RoleType.BASIC);
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/users")
+        mockMvc.perform(MockMvcRequestBuilders.post("/register")
         .contentType(MediaType.APPLICATION_JSON)
         .content(mapper.writeValueAsString(user))
         .accept(MediaType.APPLICATION_JSON))
